@@ -36,7 +36,8 @@ int main() {
             }
             //ВЫЧИСЛЕНИЕ ПРАВОЙ ЧАСТИ УРАВНЕНИЯ
             b[i] = getB(i + 1);
-            printf("; b = %.5f\n", b[i]);
+            //printf("\n");
+            printf("\t\tb = %.5f\n", b[i]);
         }
 
         printf("\n");
@@ -44,6 +45,11 @@ int main() {
         //НАХОЖДЕНИЕ РЕШЕНИЯ УРАВНЕНИЯ
         decomp(m_size, matrix, cond, ipvt, work);
         solve(m_size, matrix, b, ipvt);
+        float result = 0;
+        for (int k = 0; k <m_size; k++) {
+            result+=cond[k];
+        }
+        printf("cond = %.10f\n", result);
 
         //ВЫВОД РЕШЕНИЯ
         for (int i = 0; i < m_size; i++) {
@@ -54,7 +60,6 @@ int main() {
         printf("\n");
         printf("\n");
     }
-
 
     return 0;
 }
